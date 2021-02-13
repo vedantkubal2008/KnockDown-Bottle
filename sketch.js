@@ -54,9 +54,10 @@ function draw() {
     text("1. The goal of the game is to hit the bottles with ball and score higher as much as you can!",200,150);
     text("2. You have to drag and release the sling to launch the ball.",200,200);
     text("3. You can press space key to reset the ball after launching.",200,250)
-    text("3. You have 5 chances to hit the bottles.",200,300);
-    text("Enjoy playing :)",200,400);
-    text("Press 's' to play",200,440);
+    text("4. You have to score 80 points to win.",200,300);
+    text("5. You have 5 chances to hit the bottles.",200,350);
+    text("Enjoy playing :)",200,420);
+    text("Press 's' to play",200,460);
     if(keyCode===115){
       gameState=1;
     }
@@ -94,12 +95,43 @@ function draw() {
   detectCollision(ball,bottle6);
   detectCollision(ball,bottle7);
   
-  if (count>=5){
-    reset();
+  if (count>=6){
+     gameState=2
   
   }
 }
+
+ if(gameState===2){
+  if(score>=80){
+    background("Yellow");
+     textSize(80);
+     fill('green')
+     text("You Win!!",350,100)
+     textSize(150);
+     fill('red')
+     text("Gameover!",200,250);
+  textSize(20);
+  text("Refresh the page to replay",450,300);
+  textSize(20);
+  text("Your score: "+score+"/80",500,400);
+  
+    
+   
+     
+  }else{
+  background("Yellow");
+  textSize(150);
+  fill('red')
+  text("Gameover!",200,250);
+  textSize(20);
+  text("Refresh the page to replay",450,300);
+  textSize(20);
+  text("Your score: "+score+"/80",500,400);
  
+  
+  } 
+
+ }
   drawSprites();
   }
 
@@ -138,13 +170,4 @@ function mouseReleased(){
   count+=1
   sling1.fly();
  
-}
-function reset(){
-  background("Yellow");
-  textSize(150);
-  fill('red')
-  text("Gameover!",200,250);
-  textSize(20);
-  text("Refresh the page to replay",450,300);
-  
 }
